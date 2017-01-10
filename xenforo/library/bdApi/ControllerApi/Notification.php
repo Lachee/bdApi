@@ -47,6 +47,17 @@ class bdApi_ControllerApi_Notification extends bdApi_ControllerApi_Abstract
         return $this->responseData('bdApi_ViewApi_Notification_List', $data);
     }
 
+	public function actionPostCreate() {
+		$this->_assertRegistrationRequired();
+        $visitor = XenForo_Visitor::getInstance();
+		
+        $text = $this->_input->filterSingle('text', XenForo_Input::STRING);
+		
+		//$alertUserId, $userId, $username, $contentType, $contentId, $action, array $extraData) 
+		$this->_getAlertModel()->alertUser($visitor["user_id"], 0, $visitor["username"], "user", 1, "from_admin", array("alert_text" => $text));
+		return $this->responseMessage(new XenForo_Phrase('changes_saved'));
+	}
+	
     public function actionPostRead()
     {
         $this->_assertRegistrationRequired();
