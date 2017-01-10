@@ -2354,6 +2354,26 @@ Mark all existing notifications as read. Since forum-2014092701.
 Required scopes:
 
  * `post`
+ 
+ 
+### POST `/notifications/create`
+Creates a new notification.
+
+Parameters:
+
+ * `text` (__required__): The text of the new notification.
+
+
+Response:
+
+    {
+        status: "ok",
+        message: "Changes Saved"
+    }
+
+Required scopes:
+
+ * `post`
 
 ## Searching
 
